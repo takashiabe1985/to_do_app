@@ -1,22 +1,17 @@
 <template>
   <el-table
-    :data=“toDos”
+    :data="tableData"
     style="width: 100%">
     <el-table-column
-      prop="title">
+      prop="date"
+      label="Date"
+      width="180">
     </el-table-column>
     <el-table-column
-      prop="expired_at">
+      prop="name"
+      label="Name"
+      width="180">
     </el-table-column>
-    <el-table-column
-      width="120">
-      <template v-slot="scope">
-   　 　<el-button
-      　　@click="destroyToDo(scope.row.id)"
-         type="danger"
-         icon="el-icon-delete"
-         circle></el-button>
-　　  </template>
     <el-table-column
       prop="address"
       label="Address">
@@ -24,26 +19,27 @@
   </el-table>
 </template>
 <script>
- import axios from 'axios'
   export default {
-  data() {
-    return {
-      toDos: []
-    }
-  },
-  created()
-    {axios.get('/api/v1/to_dos')
-       .then(res => {
-         this.toDos = res.data
-       })
-  },
-  methods: {
-  destroyToDo(id) {
-    axios.delete('/api/v1/to_dos/' + id)
-      .then(res => {
-      });
+    data() {
+      return {
+        tableData: [{
+          date: '2016-05-03',
+          name: 'Tom',
+          address: 'No. 189, Grove St, Los Angeles'
+        }, {
+          date: '2016-05-02',
+          name: 'Tom',
+          address: 'No. 189, Grove St, Los Angeles'
+        }, {
+          date: '2016-05-04',
+          name: 'Tom',
+          address: 'No. 189, Grove St, Los Angeles'
+        }, {
+          date: '2016-05-01',
+          name: 'Tom',
+          address: 'No. 189, Grove St, Los Angeles'
+        }]
+      }
     }
   }
-}
-　
 </script>
