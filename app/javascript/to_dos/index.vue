@@ -1,16 +1,12 @@
 <template>
   <el-table
-    :data="tableData"
-    style="width: 100%">
+   :data=“toDos”
+   style="width: 100%">
     <el-table-column
-      prop="date"
-      label="Date"
-      width="180">
+      prop="title">
     </el-table-column>
     <el-table-column
-      prop="name"
-      label="Name"
-      width="180">
+      prop="expired_at">
     </el-table-column>
     <el-table-column
       prop="address"
@@ -19,27 +15,19 @@
   </el-table>
 </template>
 <script>
+ import axios from 'axios'
   export default {
-    data() {
-      return {
-        tableData: [{
-          date: '2016-05-03',
-          name: 'Tom',
-          address: 'No. 189, Grove St, Los Angeles'
-        }, {
-          date: '2016-05-02',
-          name: 'Tom',
-          address: 'No. 189, Grove St, Los Angeles'
-        }, {
-          date: '2016-05-04',
-          name: 'Tom',
-          address: 'No. 189, Grove St, Los Angeles'
-        }, {
-          date: '2016-05-01',
-          name: 'Tom',
-          address: 'No. 189, Grove St, Los Angeles'
-        }]
-      }
-    }
+   data() {
+    return {
+      toDos: []
+     }
+   },
+   created() {
+    axios.get('/api/v1/to_dos')
+       .then(res => {
+         this.toDos = res.data
+       })
+   }
   }
+  
 </script>
