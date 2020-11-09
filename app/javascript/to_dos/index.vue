@@ -1,19 +1,23 @@
 <template>
  <div id="app">
-  <el-tabs v-model="activeName">
-  <el-tab-pane label="ToDo" name="toDo">
-    <to-do-table 
-    v-bind:to-dos="filter(toDos, false)"
-    @update="updateToDo"
-    @destroy="destroyToDo"></to-do-table>
-  </el-tab-pane>
-  <el-tab-pane label="終了したToDo" name="finishedToDo">終了したToDo
-    <to-do-table 
-    v-bind:to-dos="filter(toDos, true)"
-    @update="updateToDo"
-    @destroy="destroyToDo"></to-do-table>
-  </el-tab-pane>    
-</el-tabs>
+   <el-row>
+    <el-col :span="12" :offset="6">      
+     <el-tabs v-model="activeName">
+       <el-tab-pane label="ToDo" name="toDo">
+         <to-do-table 
+           v-bind:to-dos="filter(toDos, false)"
+           @update="updateToDo"
+           @destroy="destroyToDo"></to-do-table>
+       </el-tab-pane>
+       <el-tab-pane label="終了したToDo" name="finishedToDo">終了したToDo
+         <to-do-table 
+           v-bind:to-dos="filter(toDos, true)"
+           @update="updateToDo"
+           @destroy="destroyToDo"></to-do-table>
+         </el-tab-pane>    
+      </el-tabs>
+     </el-col>
+   </el-row>     
  </div> 
 </template>
 
