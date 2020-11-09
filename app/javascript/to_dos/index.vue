@@ -1,6 +1,10 @@
 <template>
  <div id="app">
-   <el-row>
+  <el-row>
+   <el-button
+    icon="el-icon-plus"
+    @click="createToDoDialog = true"
+    circle></el-button>
     <el-col :span="12" :offset="6">      
      <el-tabs v-model="activeName">
        <el-tab-pane label="ToDo" name="toDo">
@@ -17,19 +21,27 @@
          </el-tab-pane>    
       </el-tabs>
      </el-col>
-   </el-row>     
+   </el-row>
+   <el-dialog
+     :visible.sync="createToDoDialog"
+     width="30%"
+     center>
+     <to-do-form></to-do-form>  
+   </el-dialog>
  </div> 
 </template>
 
 <script>
  import ToDoTable from '../to_dos/to-do-table'
+ import ToDoForm from '../to_dos/to-do-form'
  import axios from 'axios'
  import {reject, filter} from 'lodash';
   export default {
   data() {
     return {
       toDos: [],
-      activeName: 'toDo'
+      activeName: 'toDo',
+      createToDoDialog: false
     }
   },
   created() {
@@ -39,7 +51,8 @@
        })
   },
   components: { 
-    ToDoTable
+    ToDoTable,
+    ToDoForm
   },    
   methods: {
     destroyToDo(id) {

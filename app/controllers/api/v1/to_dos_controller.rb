@@ -17,9 +17,17 @@ class Api::V1::ToDosController < ActionController::API
      end
     end
     
+    def create
+     @to_do = ToDo.new(to_do_params)
+     if @to_do.save
+       render status: :created
+     else
+       render status: 400, json: { status: 400, message: 'ToDoの作成に失敗しました'}
+     end  
+    end
   private
     def to_do_params
-     params.require(:to_do).permit(:finished)
+     params.require(:to_do).permit(:title, :expired_at, :finished)
     end
     
 end
