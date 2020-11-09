@@ -26,7 +26,9 @@
      :visible.sync="createToDoDialog"
      width="30%"
      center>
-     <to-do-form></to-do-form>  
+     <to-do-form 
+       @close="closeDialog"
+       @add="addToDo"></to-do-form>  
    </el-dialog>
  </div> 
 </template>
@@ -73,6 +75,12 @@
     },
     filter(toDos, finished) {
         return filter(toDos, ['finished', finished])
+    },
+    closeDialog() {
+      this.createToDoDialog = false
+    },
+    addToDo(toDo) {
+      this.toDos.push(toDo)
     }
   }
 }
