@@ -30,7 +30,7 @@
        @close="closeDialog"
        @add="addToDo"></to-do-form>  
    </el-dialog>
- </div> 
+ </div>
 </template>
 
 <script>
